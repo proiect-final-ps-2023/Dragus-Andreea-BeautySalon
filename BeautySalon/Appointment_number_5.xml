@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<appointment>
+    <id>5</id>
+    <client>
+        <id>7</id>
+        <name>Dragus Andreea</name>
+        <userType>CLIENT</userType>
+        <userName>dragusandreea33@yahoo.com</userName>
+        <password>$2a$10$F/PxlCxRwu76LsI8XaUtNeMYa.EEBNmgOJHwUtihiiH2BrP/Cz4te</password>
+        <loyaltyPoints>240</loyaltyPoints>
+        <salesCode>00L6WG83CN</salesCode>
+        <loggedIn>true</loggedIn>
+    </client>
+    <employee>
+        <id>2</id>
+        <name>Anca Chetan</name>
+        <userType>EMPLOYEE</userType>
+        <userName>ancachetan</userName>
+        <password>employee2</password>
+        <employeeType>NAIL_TECH</employeeType>
+        <loggedIn>false</loggedIn>
+    </employee>
+    <dateTime>2023-05-25T13:00:00</dateTime>
+    <beautyServices>
+        <id>1</id>
+        <name>Simple gel nails</name>
+        <price>120.00</price>
+        <employeeType>NAIL_TECH</employeeType>
+    </beautyServices>
+    <beautyServices>
+        <id>2</id>
+        <name>Slim gel nails</name>
+        <price>250.00</price>
+        <employeeType>NAIL_TECH</employeeType>
+    </beautyServices>
+    <totalPrice>370.00</totalPrice>
+</appointment>

@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/firstPage">Beauty Salon</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/firstPage">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/employeeList">Our team</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
+        <li *ngIf="user.userType=='CLIENT'" class="nav-item"><a class="nav-link" href="/clientHomePage">ClientHome</a></li>
+        <li *ngIf="user.userType=='EMPLOYEE'" class="nav-item"><a class="nav-link" href="/employeeHomePage">EmployeeHome</a></li>
+        <li *ngIf="user.userType=='CLIENT'" class="nav-item"><a class="nav-link" href="/bookAppointment">Book an appointment</a></li>
+        <li class="nav-item"><a class="nav-link" href="/myAccount">My Account</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="h-100 gradient-form" style="background-color: #8c8c8c;">
+  <div class="container py-20 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img class="img-fluid rounded-circle mb-xl-5" src='./assets/logo-firstPage_2.png' alt="..." />
+                  <h4 class="mt-1 mb-5 pb-1">Glam Haven</h4>
+                </div>
+
+                <form (ngSubmit) = "submitUpdateDetails()">
+                  <p>Please login to your account</p>
+
+                  <div class="form-outline mb-4">
+                    <input type="text" [(ngModel)] = "user.userName"  name="userName" id="form2Example11" class="form-control"
+                          disabled="true" />
+                    <label class="form-label" for="form2Example11">Username</label>
+
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="text" [(ngModel)] = "user.name" name="name" id="form2Example22" class="form-control" />
+                    <label class="form-label" for="form2Example22">Name</label>
+                  </div>
+
+                  <div class="form-outline mb-4" *ngIf="user.userType=='CLIENT'">
+                    <input type="text" [(ngModel)] = "client.loyaltyPoints" name="loyaltyPoints" id="form3Example22" class="form-control" disabled="true" />
+                    <label class="form-label" for="form2Example22">Loyalty Points</label>
+                  </div>
+
+                  <div class="form-outline mb-4" *ngIf="user.userType=='EMPLOYEE'">
+                    <input type="text" [(ngModel)] = "employee.employeeType" name="Beauty Field" id="form4Example22" class="form-control" disabled="true" />
+                    <label class="form-label" for="form2Example22">Beauty Field</label>
+                  </div>
+
+                  <div *ngIf="changePass==true">
+                    <input type="password" [(ngModel)] = "this.newPass" name="password" id="form5Example22" class="form-control"  />
+                    <label class="form-label" for="form2Example22">New Password</label>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit"> Update account</button>
+                  </div>
+
+                </form>
+                <div class="text-center pt-1 mb-5 pb-1">
+                  <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" (click)="changePassword()"> Change password</button>
+                </div>
+
+
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">Here you can see and modify your account </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

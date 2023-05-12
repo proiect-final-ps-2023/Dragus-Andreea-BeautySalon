@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Glam Haven</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="appointment.component.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/firstPage">Beauty Salon</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/firstPage">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/employeeList">Our team</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/clientHomePage">ClientHome</a></li>
+        <li class="nav-item"><a class="nav-link" href="/myAccount">My Account</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Header - set the background image for the header in the line below-->
+<header class="py-1 bg-image-full" style="background-image: url('./assets/wallpaper1-clientHomePage.webp')">
+  <div style="height: 4rem"></div>
+  <div class="text-center my-5" style = "position:relative; left:600px;">
+    <img class="img-fluid rounded-circle mb-4" src='./assets/logo-firstPage_2.png' alt="..." />
+    <h1 class="text-white fs-3 fw-bolder">Glam Haven</h1>
+    <p class="text-white-50 mb-0">Book an appointment now</p>
+  </div>
+</header>
+<!-- Content section-->
+<section class="py-5">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+
+      <h2>Hello there, {{clientName}}</h2>
+      <h2 class="lead">You can boook an appointment now below</h2>
+
+    </div>
+  </div>
+</section>
+
+<div class="row justify-content-center">
+  <h2 class="lead">BOOK APPOINTMENT</h2>
+</div>
+
+<section class="py-5">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <mat-form-field appearance="fill">
+        <mat-label>Select the beauty section</mat-label>
+        <mat-select id = "employeeType" (selectionChange)="changeEmployeeType($event.value)">
+          <mat-option value="MAKEUP_ARTIST">MAKEUP</mat-option>
+          <mat-option value="NAIL_TECH">NAILS</mat-option>
+          <mat-option value="HAIR_DRESSER">HAIR</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select the beauty guru</mat-label>
+        <mat-select id = "employee" (selectionChange)="changeEmployee($event.value)">
+          <mat-option  *ngFor="let emplName of this.employees" value= {{emplName}}>{{emplName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field color="accent" appearance="fill">
+        <mat-label>Select the date</mat-label>
+        <input matInput [matDatepicker]="picker2"  [(ngModel)]="date" (ngModelChange)="changeDate()">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select the hour</mat-label>
+        <mat-select id = "hour" (selectionChange)="changeHour($event.value)">
+          <mat-option  *ngFor="let hour of this.employeeFreeHours" value= {{hour}}>{{hour}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select beauty service</mat-label>
+        <mat-select id = "beautyService1" (selectionChange)="selectBeautyService1($event.value)" >
+          <mat-option  *ngFor="let beautyService of this.beautyServices1" value= {{beautyService}}>{{beautyService}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="showBeautyService2 == true">
+        <mat-label>Select beauty service</mat-label>
+        <mat-select id = "beautyService2" (selectionChange)="selectBeautyService2($event.value)" >
+          <mat-option  *ngFor="let beautyService of this.beautyServices2" value= {{beautyService}}>{{beautyService}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="showBeautyService3 == true">
+        <mat-label>Select beauty service</mat-label>
+        <mat-select id = "beautyService3" (selectionChange)="selectBeautyService3($event.value)" >
+          <mat-option  *ngFor="let beautyService of this.beautyServices3" value= {{beautyService}}>{{beautyService}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="fill">
+        <mat-label>Sale code</mat-label>
+        <input matInput [(ngModel)]="this.saleCode">
+
+      </mat-form-field>
+      <div>
+      <button class="button-add-row" mat-button (click)="checkSaleCode()">
+        Verify Code
+      </button>
+
+      <a class="lead" *ngIf="this.validCode == true">
+        Valid code
+      </a>
+
+        <a class="lead" *ngIf="this.invalidCode == true">
+          Invalid code
+        </a>
+      </div>
+      <div>
+        <mat-checkbox class="example-margin" [(ngModel)]="checkedXML">Save Appointment as XML</mat-checkbox>
+      </div>
+
+      <div>
+        <button class="button-add-row" mat-button (click)="bookAppointment()">
+          Book appointment now
+        </button>
+      </div>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select id = "querySelect" (selectionChange)="changeQuery($event.value)">
+          <mat-option value="findByClientNameAndDateTime">find by client and dateTime</mat-option>
+          <mat-option value="findAllByClient">find by client</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button class="button-add-row" mat-button (click)="queryUserDataBase()">
+          Search
+        </button>
+      </div>
+
+      <table mat-table [dataSource]="dataSource">
+        <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+          <th mat-header-cell *matHeaderCellDef [ngSwitch]="col.key">
+            <span *ngSwitchDefault>{{ col.label }}</span>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+              <ng-container *ngSwitchCase="'isSelected'">
+                <mat-checkbox
+                  (change)="element.isSelected = $event.checked"
+                  [checked]="element.isSelected"
+                ></mat-checkbox>
+              </ng-container>
+              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                <button class = "button-add-row" mat-stroked-button (click)="element.isEdit = !element.isEdit">
+                  Edit
+                </button>
+                <button
+                  mat-stroked-button
+                  class="button-remove-rows"
+                  (click)="removeRow(element.id)"
+                >
+                  Delete
+                </button>
+              </div>
+              <div *ngIf="col.key == 'client' || col.key == 'employee'">
+
+              <span *ngSwitchDefault>
+                 {{ element[col.key]['name']}}
+              </span>
+              </div>
+
+              <div *ngIf="col.key != 'client' && col.key != 'employee'">
+              <span *ngSwitchDefault>
+          {{ element[col.key]}}
+        </span>
+              </div>
+
+            </div>
+            <div [ngSwitch]="col.type" *ngIf="element.isEdit">
+              <div *ngSwitchCase="'isSelected'"></div>
+              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                <button
+                  mat-button class = "button-add-row"
+                  (click)="editRow(element)"
+                  [disabled]="disableSubmit(element.id)"
+                >
+                  Done
+                </button>
+              </div>
+
+              <div *ngSwitchDefault>
+                <mat-form-field class="form-input" *ngIf="col.key != 'id' && col.key != 'client' && col.key != 'employee'">
+                  <input
+                    matInput
+                    [required]="col.required"
+                    [pattern]="col.pattern"
+                    [type]="col.type"
+                    [(ngModel)]="element[col.key]"
+                    (change)="inputHandler($event, element.id, col.key)"
+                  />
+                </mat-form-field>
+
+
+              </div>
+            </div>
+
+
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Beauty Salon 2023</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+</body>
+</html>
+
+
+

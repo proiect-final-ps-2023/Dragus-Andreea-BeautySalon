@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#!">Beauty Salon</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/firstPage">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/employeeList">Our team</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <div class="text-center">
+            <div class="img-fluid-center" style = " height: 100px; width: 100px; margin-left: 225px">
+              <img class="img-fluid rounded-circle mb-xl-5" src='./assets/logo-firstPage_2.png' alt="..." />
+            </div>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form Glam Haven</h3>
+            </div>
+            <form (ngSubmit) = "onSubmit()">
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline">
+                    <input type="text" id="firstName" class="form-control form-control-lg"  name="name"  [(ngModel)]="name"/>
+                    <label class="form-label" for="firstName" >Name</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <h6 class="mb-2 pb-1">User Type: </h6>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="adminType"
+                           value="adminType"  (change)="onItemChange('adminType')"/>
+                    <label class="form-check-label" for="adminType">Admin</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="employeeType"
+                           value="employeeType" (change)="onItemChange('employeeType')"/>
+                    <label class="form-check-label" for="employeeType">Employee</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="clientType"
+                           value="clientType" (change)="onItemChange('clientType')"/>
+                    <label class="form-check-label" for="clientType">Client</label>
+                  </div>
+
+                </div>
+
+                </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="username" id="username" class="form-control form-control-lg"  name="userName" [(ngModel)]="userName"/>
+                    <label class="form-label" for="username">Username</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+
+                  <div class="form-outline">
+                    <input type="password" id="password" class="form-control form-control-lg"  name="password" [(ngModel)]="password"/>
+                    <label class="form-label" for="password">Password</label>
+                  </div>
+
+                </div>
+              </div>
+             <div *ngIf="employeeType == true">
+              <div class="row">
+                <div class="col-12">
+
+                  <select class="select form-control-lg" name="employeeTypeValue" [(ngModel)] = "employeeTypeValue">
+                    <option value="1" disabled>Choose option</option>
+                    <option value="NAIL_TECH" >NAIL TECH</option>
+                    <option value="HAIR_DRESSER"  >HAIR DRESSER</option>
+                    <option value="MAKEUP_ARTIST"  >MAKEUP ARTIST</option>
+                  </select>
+                  <label class="form-label select-label">Choose employee type</label>
+
+                </div>
+              </div>
+             </div>
+
+              <div class="mt-4 pt-2">
+                <input class="btn btn-outline-danger" type="submit" value="Submit" />
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

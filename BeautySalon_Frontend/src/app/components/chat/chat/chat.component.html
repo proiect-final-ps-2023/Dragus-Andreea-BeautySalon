@@ -1,0 +1,131 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!--<<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being-->
+<!--  enabled. Please enable-->
+<!--  Javascript and reload this page!</h2></noscript>-->
+<!--<div id="main-content" class="container">-->
+
+<!--  <div class="row">-->
+<!--    <div class="col-md-12">-->
+<!--      {{ greeting }}-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="row">-->
+<!--    <div class="col-md-6">-->
+<!--      <form class="form-inline">-->
+<!--        <div class="form-group">-->
+<!--          <div *ngIf="userType=='ADMIN'">-->
+<!--            <label>ADMIN ANNOUNCEMENT FORUM</label>-->
+<!--          </div>-->
+
+<!--          <div *ngIf="userType=='CLIENT'">-->
+<!--            <label>CLIENT ANNOUNCEMENT FORUM</label>-->
+<!--          </div>-->
+<!--          <button (click)="connect()" class="btn btn-default" type="submit">Connect</button>-->
+<!--          <button (click)="disconnect()" class="btn btn-default" type="submit" >Disconnect-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div class="col-md-6">-->
+<!--      <form class="form-inline">-->
+<!--        <div class="form-group" *ngIf="userType == 'ADMIN'">-->
+<!--          <label>Send announcement</label>-->
+<!--          <input type="text" [(ngModel)]="name" class="form-control" name="name"> <br>-->
+<!--        <button (click)="sendMessage()" class="btn btn-default" type="submit">Send</button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div >-->
+<!--      <p>ANNOUNCEMENTS</p>-->
+<!--      <p>-->
+<!--        <button (click)="showAnnouncements()" class="btn btn-default" type="submit">Show</button>-->
+<!--      </p>-->
+<!--      <p *ngFor="let a of announcementsNew"> {{a}}</p>-->
+<!--      </div >-->
+<!--  </div>-->
+
+<!--</div>-->
+<!--<router-outlet></router-outlet>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Small Business - Start Bootstrap Template</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="chat.component.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/firstPage">Beauty Salon</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/firstPage">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/employeeList">Our team</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/bookAppointment">Book an appointment</a></li>
+        <li class="nav-item"><a class="nav-link" href="/myAccount">My Account</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Page Content-->
+<div class="container px-4 px-lg-5">
+  <!-- Heading Row-->
+  <div class="row gx-4 gx-lg-5 align-items-center my-5">
+    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="assets/chatWallpaper.jpg" alt="..." /></div>
+    <div class="col-lg-5">
+      <h1 class="font-weight-light">Glam Haven Forum</h1>
+      <p>Welcome to our beauty forum</p>
+      <p> <button (click)="connect()" class="btn btn-primary" type="submit">Connect</button></p>
+      <a class="btn btn-primary" (click)="showAnnouncements()">See announcements</a>
+    </div>
+  </div>
+  <!-- Call to Action-->
+  <div class="card text-white bg-secondary my-5 py-4 text-center" *ngIf="userType != 'ADMIN'">
+    <div class="card-body"><p class="text-white m-0">Here you can see our latest announcements and promotions</p></div>
+  </div>
+
+
+  <div class="card text-white bg-secondary my-5 py-4 text-center" *ngIf="userType == 'ADMIN'">
+    <div class="card-body"><p class="text-white m-0">Send announcement</p></div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="name" class="form-control" name="name"> <br>
+      <button (click)="sendMessage()" class="btn btn-primary" type="submit">Send</button>
+    </div>
+  </div>
+
+  <!-- Content Row-->
+  <div class="row gx-4 gx-lg-5" *ngFor="let announce of announcementsNew">
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">Announcement {{announcementsNew.indexOf(announce)}}</h2>
+          <p class="card-text">{{announce}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+  <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Glam Haven 2023</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+</body>
+</html>
+
+
